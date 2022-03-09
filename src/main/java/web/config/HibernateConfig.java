@@ -59,12 +59,10 @@ public class HibernateConfig {
         LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
         lcemfb.setJpaVendorAdapter(getJpaVendorAdapter());
         lcemfb.setDataSource(dataSource());
-      //  lcemfb.setPersistenceUnitName("myJpaPersistenceUnit");
         lcemfb.setPackagesToScan("web");
         lcemfb.setJpaProperties(hibernateProperties());
         return lcemfb;
     }
-
 
     @Bean(name = "transactionManager")
     public PlatformTransactionManager txManager() {

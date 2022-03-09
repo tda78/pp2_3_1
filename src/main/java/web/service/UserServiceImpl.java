@@ -12,10 +12,13 @@ import java.util.List;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-    @Autowired
-    UserDao dao;
 
-    public UserServiceImpl() {}
+    private final UserDao dao;
+
+    @Autowired
+    public UserServiceImpl(UserDao dao) {
+        this.dao = dao;
+    }
 
     @Override
     public List<User> getUsers() {
@@ -23,17 +26,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByID(int id) {
+    public User findUserByID(long id) {
         return dao.findUser(id);
     }
 
     @Override
     public void saveUser(User user) {
-        if(user.getId()==0){
-            dao.saveUser(user);
-        }else {
-            dao.updateUser(user);
-        }
+        dao.saveUser(user);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        dao.updateUser(user);
     }
 
     @Override

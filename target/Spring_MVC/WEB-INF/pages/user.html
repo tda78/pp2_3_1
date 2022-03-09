@@ -6,7 +6,8 @@
     <title>Title</title>
 </head>
 <body>
-<form th:name="userForm" th:method="POST" th:action="@{/users}" th:object="${user}">
+<form th:name="userForm" th:method="post" th:action="@{/users}" th:object="${user}">
+    <input name="_method" type="hidden" value="patch" />
     <input type="text" hidden size="40" th:field="*{id}" id="id"/>
     <p>name</p>
     <input type="text" size="40" th:field="*{name}" id="name"/>
